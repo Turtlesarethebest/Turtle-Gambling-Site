@@ -47,12 +47,16 @@
     .money-button.active {
       background-color: #0056b3;
     }
-    .spin-button {
+    .spin-button, .refresh-button {
       background-color: #28a745;
       color: white;
       border: none;
       padding: 10px 20px;
       cursor: pointer;
+      margin-top: 10px;
+    }
+    .refresh-button {
+      background-color: #ffc107;
     }
     #balance {
       font-size: 1.2rem;
@@ -78,6 +82,7 @@
     </div>
     <button class="spin-button" disabled>Spin</button>
     <div class="balance">Balance: $500</div>
+    <button class="refresh-button">Refresh Balance</button>
   </div>
 
   <!-- Slot Machine 2 -->
@@ -95,6 +100,7 @@
     </div>
     <button class="spin-button" disabled>Spin</button>
     <div class="balance">Balance: $500</div>
+    <button class="refresh-button">Refresh Balance</button>
   </div>
 
   <!-- Slot Machine 3 -->
@@ -112,6 +118,7 @@
     </div>
     <button class="spin-button" disabled>Spin</button>
     <div class="balance">Balance: $500</div>
+    <button class="refresh-button">Refresh Balance</button>
   </div>
 
   <script>
@@ -126,6 +133,7 @@
       const slots = machineElement.querySelectorAll('.slot');
       const moneyButtons = machineElement.querySelectorAll('.money-button');
       const spinButton = machineElement.querySelector('.spin-button');
+      const refreshButton = machineElement.querySelector('.refresh-button');
       const balanceDisplay = machineElement.querySelector('.balance');
 
       let selectedAmount = null;
@@ -175,6 +183,13 @@
         } else {
           alert('Insufficient balance or no amount selected.');
         }
+      });
+
+      // Refresh balance button logic
+      refreshButton.addEventListener('click', () => {
+        machine.balance = 500;
+        updateBalance();
+        alert(`${machine.id}'s balance has been refreshed to $500.`);
       });
 
       function updateBalance() {
