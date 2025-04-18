@@ -8,16 +8,24 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
     }
     .slot-machine {
       border: 2px solid #333;
       padding: 20px;
-      margin-bottom: 30px;
+      width: 250px;
+      text-align: center;
     }
     .slot-machine h2 {
       margin-top: 0;
     }
-    #slots {
+    .slots {
       display: flex;
       justify-content: center;
       margin-bottom: 20px;
@@ -33,7 +41,7 @@
       text-align: center;
       background-color: #f0f0f0;
     }
-    #buttons {
+    .money-buttons {
       margin-bottom: 20px;
     }
     .money-button {
@@ -58,7 +66,7 @@
     .refresh-button {
       background-color: #ffc107;
     }
-    #balance {
+    .balance {
       font-size: 1.2rem;
       margin-top: 20px;
     }
@@ -66,59 +74,60 @@
 </head>
 <body>
   <h1>Slot Machine Game</h1>
+  <div class="container">
+    <!-- Slot Machine 1 (Left) -->
+    <div class="slot-machine" id="machine1">
+      <h2>Slot Machine 1</h2>
+      <div class="slots">
+        <div class="slot">0</div>
+        <div class="slot">0</div>
+        <div class="slot">0</div>
+      </div>
+      <div class="money-buttons">
+        <button class="money-button" data-amount="15">$15</button>
+        <button class="money-button" data-amount="35">$35</button>
+        <button class="money-button" data-amount="55">$55</button>
+      </div>
+      <button class="spin-button" disabled>Spin</button>
+      <div class="balance">Balance: $500</div>
+      <button class="refresh-button">Refresh Balance</button>
+    </div>
 
-  <!-- Slot Machine 1 -->
-  <div class="slot-machine" id="machine1">
-    <h2>Slot Machine 1</h2>
-    <div id="slots1">
-      <div class="slot">0</div>
-      <div class="slot">0</div>
-      <div class="slot">0</div>
+    <!-- Slot Machine 2 (Middle) -->
+    <div class="slot-machine" id="machine2">
+      <h2>Slot Machine 2</h2>
+      <div class="slots">
+        <div class="slot">0</div>
+        <div class="slot">0</div>
+        <div class="slot">0</div>
+      </div>
+      <div class="money-buttons">
+        <button class="money-button" data-amount="15">$15</button>
+        <button class="money-button" data-amount="35">$35</button>
+        <button class="money-button" data-amount="55">$55</button>
+      </div>
+      <button class="spin-button" disabled>Spin</button>
+      <div class="balance">Balance: $500</div>
+      <button class="refresh-button">Refresh Balance</button>
     </div>
-    <div id="buttons1">
-      <button class="money-button" data-amount="15">$15</button>
-      <button class="money-button" data-amount="35">$35</button>
-      <button class="money-button" data-amount="55">$55</button>
-    </div>
-    <button class="spin-button" disabled>Spin</button>
-    <div class="balance">Balance: $500</div>
-    <button class="refresh-button">Refresh Balance</button>
-  </div>
 
-  <!-- Slot Machine 2 -->
-  <div class="slot-machine" id="machine2">
-    <h2>Slot Machine 2</h2>
-    <div id="slots2">
-      <div class="slot">0</div>
-      <div class="slot">0</div>
-      <div class="slot">0</div>
+    <!-- Slot Machine 3 (Right) -->
+    <div class="slot-machine" id="machine3">
+      <h2>Slot Machine 3</h2>
+      <div class="slots">
+        <div class="slot">0</div>
+        <div class="slot">0</div>
+        <div class="slot">0</div>
+      </div>
+      <div class="money-buttons">
+        <button class="money-button" data-amount="15">$15</button>
+        <button class="money-button" data-amount="35">$35</button>
+        <button class="money-button" data-amount="55">$55</button>
+      </div>
+      <button class="spin-button" disabled>Spin</button>
+      <div class="balance">Balance: $500</div>
+      <button class="refresh-button">Refresh Balance</button>
     </div>
-    <div id="buttons2">
-      <button class="money-button" data-amount="15">$15</button>
-      <button class="money-button" data-amount="35">$35</button>
-      <button class="money-button" data-amount="55">$55</button>
-    </div>
-    <button class="spin-button" disabled>Spin</button>
-    <div class="balance">Balance: $500</div>
-    <button class="refresh-button">Refresh Balance</button>
-  </div>
-
-  <!-- Slot Machine 3 -->
-  <div class="slot-machine" id="machine3">
-    <h2>Slot Machine 3</h2>
-    <div id="slots3">
-      <div class="slot">0</div>
-      <div class="slot">0</div>
-      <div class="slot">0</div>
-    </div>
-    <div id="buttons3">
-      <button class="money-button" data-amount="15">$15</button>
-      <button class="money-button" data-amount="35">$35</button>
-      <button class="money-button" data-amount="55">$55</button>
-    </div>
-    <button class="spin-button" disabled>Spin</button>
-    <div class="balance">Balance: $500</div>
-    <button class="refresh-button">Refresh Balance</button>
   </div>
 
   <script>
