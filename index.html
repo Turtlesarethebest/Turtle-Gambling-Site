@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slot Machine Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #slots {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .slot {
+      font-size: 2rem;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      border: 2px solid #333;
+      margin: 0 10px;
+      display: inline-block;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+    #buttons {
+      margin-bottom: 20px;
+    }
+    .money-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+    .money-button.active {
+      background-color: #0056b3;
+    }
+    #spin {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    #balance {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Slot Machine</h1>
+  <div id="slots">
+    <div class="slot" id="slot1">0</div>
+    <div class="slot" id="slot2">0</div>
+    <div class="slot" id="slot3">0</div>
+  </div>
+  <div id="buttons">
+    <button class="money-button" data-amount="15">$15</button>
+    <button class="money-button" data-amount="35">$35</button>
+    <button class="money-button" data-amount="55">$55</button>
+  </div>
+  <button id="spin" disabled>Spin</button>
+  <div id="balance">Balance: $100</div>
+
+  <script>
+    const slots = [document.getElementById('slot1'), document.getElementById('slot2'), document.getElementById('slot3')];
+    const moneyButtons = document.querySelectorAll('.money-button');
+    const spinButton = document.getElementById('spin');
+    const balanceDisplay = document.getElementById('balance');
+
+    let selectedAmount = null;
+    let balance = 100;
+
+    // Add event listeners to money buttons
+    moneyButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        moneyButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        selectedAmount = parseInt(button.getAttribute('data-amount'));
+        spinButton.disabled = false;
+      });
+    });
+
+    // Spin button logic
+    spinButton.addEventListener('click', () => {
+      if (selectedAmount !== null && balance >= selectedAmount) {
+        balance -= selectedAmount;
+        updateBalance();
+
+        // Start spinning animation
+        const spinInterval = setInterval(() => {
+          slots.forEach(slot => {
+            slot.textContent = Math.floor(Math.random() * 9) + 1;
+          });
+        }, 100);
+
+        // Stop spinning after 2 seconds
+        setTimeout(() => {
+          clearInterval(spinInterval);
+
+          // Generate final random numbers
+          const results = slots.map(() => Math.floor(Math.random() * 9) + 1);
+
+          // Display final results
+          results.forEach((num, index) => {
+            slots[index].textContent = num;
+          });
+
+          // Check win condition (777)
+          if (results.every(num => num === 7)) {
+            alert('Congratulations! You won!');
+            balance += 100; // Add reward
+            updateBalance();
+          }
+        }, 2000);
+      } else {
+        alert('Insufficient balance or no amount selected.');
+      }
+    });
+
+    function updateBalance() {
+      balanceDisplay.textContent = `Balance: $${balance}`;
+    }
+  </script>
+</body>
+</html>
