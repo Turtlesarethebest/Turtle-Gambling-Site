@@ -46,15 +46,28 @@
       flex-wrap: wrap;
       gap: 10px; /* Adds spacing between buttons */
       justify-content: center; /* Centers the buttons */
-    }
     .money-button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 0 5px;
-      cursor: pointer;
-    }
+    background-color: #007bff; /* Blue color */
+    color: white; /* White text */
+    border: none; /* Remove default borders */
+    padding: 15px 30px; /* Bigger button size */
+    margin: 10px 5px; /* Space between buttons */
+    border-radius: 25px; /* Rounded corners */
+    font-size: 1.2rem; /* Larger text */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth hover effects */
+}
+
+.money-button:hover {
+    background-color: #0056b3; /* Darker blue when hovered */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.money-button:active {
+    background-color: #003d80; /* Even darker blue for active state */
+    transform: scale(0.95); /* Slightly shrink on click */
+}
     .money-button.active {
       background-color: #0056b3;
     }
