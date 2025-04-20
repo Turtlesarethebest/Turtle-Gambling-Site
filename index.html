@@ -84,10 +84,11 @@
         <div class="slot">0</div>
       </div>
       <div class="money-buttons">
-        <button class="money-button" data-amount="15">$15</button>
-        <button class="money-button" data-amount="35">$35</button>
-        <button class="money-button" data-amount="55">$55</button>
-        <button class="money-button" data-amount="100">$100</button>
+        <button class="money-button" data-amount="15" data-chance="1">$15</button>
+        <button class="money-button" data-amount="35" data-chance="2">$35</button>
+        <button class="money-button" data-amount="55" data-chance="3">$55</button>
+        <button class="money-button" data-amount="80" data-chance="4">$80</button>
+        <button class="money-button" data-amount="110" data-chance="6">$110</button>
       </div>
       <button class="spin-button" disabled>Spin</button>
       <div class="balance">Balance: $3000</div>
@@ -103,10 +104,11 @@
         <div class="slot">0</div>
       </div>
       <div class="money-buttons">
-        <button class="money-button" data-amount="15">$15</button>
-        <button class="money-button" data-amount="35">$35</button>
-        <button class="money-button" data-amount="55">$55</button>
-        <button class="money-button" data-amount="100">$100</button>
+        <button class="money-button" data-amount="15" data-chance="1">$15</button>
+        <button class="money-button" data-amount="35" data-chance="2">$35</button>
+        <button class="money-button" data-amount="55" data-chance="3">$55</button>
+        <button class="money-button" data-amount="80" data-chance="4">$80</button>
+        <button class="money-button" data-amount="110" data-chance="6">$110</button>
       </div>
       <button class="spin-button" disabled>Spin</button>
       <div class="balance">Balance: $3000</div>
@@ -122,10 +124,11 @@
         <div class="slot">0</div>
       </div>
       <div class="money-buttons">
-        <button class="money-button" data-amount="15">$15</button>
-        <button class="money-button" data-amount="35">$35</button>
-        <button class="money-button" data-amount="55">$55</button>
-        <button class="money-button" data-amount="100">$100</button>
+        <button class="money-button" data-amount="15" data-chance="1">$15</button>
+        <button class="money-button" data-amount="35" data-chance="2">$35</button>
+        <button class="money-button" data-amount="55" data-chance="3">$55</button>
+        <button class="money-button" data-amount="80" data-chance="4">$80</button>
+        <button class="money-button" data-amount="110" data-chance="6">$110</button>
       </div>
       <button class="spin-button" disabled>Spin</button>
       <div class="balance">Balance: $3000</div>
@@ -149,6 +152,7 @@
       const balanceDisplay = machineElement.querySelector('.balance');
 
       let selectedAmount = null;
+      let selectedChance = null;
 
       // Add event listeners to money buttons
       moneyButtons.forEach(button => {
@@ -156,6 +160,7 @@
           moneyButtons.forEach(btn => btn.classList.remove('active'));
           button.classList.add('active');
           selectedAmount = parseInt(button.getAttribute('data-amount'));
+          selectedChance = parseInt(button.getAttribute('data-chance'));
           spinButton.disabled = false;
         });
       });
@@ -188,7 +193,7 @@
             // Check win condition (777)
             if (results.every(num => num === 7)) {
               alert(`${machine.id} Wins! You hit 777!`);
-              machine.balance += 100; // Add reward
+              machine.balance += selectedAmount * selectedChance; // Add reward based on multiplier
               updateBalance();
             }
           }, 2000);
